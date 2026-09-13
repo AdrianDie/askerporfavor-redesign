@@ -1,7 +1,7 @@
 /* PorFavor Tapas & Vinbar — Cutler & Co-derived design system
    Ink/white structure + PorFavor's own copper accent (not monochrome). */
 
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cookie&display=swap');
 
 :root {
   --ink: #17140f;
@@ -47,6 +47,41 @@ h1, h2, h3 {
   line-height: 1.35;
 }
 
+.script {
+  font-family: 'Cookie', cursive;
+  color: var(--copper-dark);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+.h-feature {
+  font-family: 'Cormorant Garamond', serif;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.2;
+}
+.h-feature .script { font-size: 1.25em; }
+
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 14px 0 30px;
+  color: var(--copper);
+}
+.ornament::before, .ornament::after {
+  content: '';
+  width: 70px;
+  height: 1px;
+  background: var(--line);
+}
+.ornament span { font-size: 18px; }
+.text-center { text-align: center; }
+
 p { margin: 0 0 1.2em; }
 p:last-child { margin-bottom: 0; }
 
@@ -69,28 +104,33 @@ p:last-child { margin-bottom: 0; }
 
 .btn {
   display: inline-block;
-  border: 2px solid var(--ink);
-  background: transparent;
-  color: var(--ink);
+  border: 2px solid var(--copper);
+  background: var(--copper);
+  color: #fff;
   padding: 20px 34px;
   font-size: 13px;
   letter-spacing: 0.2em;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
 }
-.btn:hover { background: var(--ink); color: var(--canvas); }
+.btn:hover { background: var(--copper-dark); border-color: var(--copper-dark); color: #fff; }
 
-.btn-copper {
-  border-color: var(--copper);
-  color: var(--copper-dark);
+.btn-outline {
+  background: transparent;
+  border-color: var(--ink);
+  color: var(--ink);
 }
-.btn-copper:hover { background: var(--copper); border-color: var(--copper); color: var(--ink); }
+.btn-outline:hover { background: var(--ink); color: var(--canvas); }
+
+.btn-copper { border-color: var(--copper); background: var(--copper); color: #fff; }
+.btn-copper:hover { background: var(--copper-dark); border-color: var(--copper-dark); }
 
 .btn-inverse {
-  border-color: var(--canvas);
-  color: var(--canvas);
+  border-color: #fff;
+  background: transparent;
+  color: #fff;
 }
-.btn-inverse:hover { background: var(--canvas); color: var(--ink); }
+.btn-inverse:hover { background: #fff; color: var(--ink); }
 
 /* ---------- Top bar ---------- */
 
@@ -254,6 +294,72 @@ p:last-child { margin-bottom: 0; }
 .page-subnav { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 18px; }
 .page-subnav a { font-size: 13px; letter-spacing: 0.14em; color: var(--cream); border-bottom: 1px solid rgba(250,247,242,0.4); padding-bottom: 2px; }
 .page-subnav a:hover { border-color: var(--copper); color: var(--copper); }
+
+/* ---------- Hero-mega (hero + quicklinks + wine list on one continuous photo) ---------- */
+
+.hero-mega {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  color: var(--cream);
+}
+.hero-mega::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(23,20,15,0.4) 0%, rgba(23,20,15,0.35) 45%, rgba(23,20,15,0.82) 100%);
+}
+.hero-mega-inner { position: relative; z-index: 2; padding: 64px var(--gutter) 80px; }
+.hero-mega .hero-eyebrow { color: var(--copper); }
+.hero-mega h1 { color: var(--cream); max-width: 520px; }
+.hero-mega .hero-actions { margin-top: 26px; }
+
+.quicklinks-float {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 40px;
+}
+.quicklinks-float a {
+  font-family: 'Archivo Narrow', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 13px;
+  color: var(--cream);
+  background: var(--copper);
+  padding: 16px 24px;
+  transition: background 0.2s ease;
+}
+.quicklinks-float a:hover { background: var(--copper-dark); }
+
+.wine-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(23,20,15,0.72);
+  border: 1px solid rgba(250,247,242,0.2);
+  padding: 30px 32px;
+  margin-top: 40px;
+}
+.wine-card .wine-cat-name { color: var(--copper); }
+.wine-card .wine-row { border-color: rgba(250,247,242,0.16); color: var(--cream); }
+
+/* ---------- Rating icon badges ---------- */
+
+.ratings-strip.icons { background: var(--cream); border: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.rating-item.icon-item { display: flex; align-items: center; gap: 14px; text-align: left; padding: 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); flex: none; }
+.rating-item.icon-item:nth-child(3n) { border-right: none; }
+.rating-badge {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-family: 'Archivo Narrow', sans-serif; font-weight: 700; font-size: 15px;
+  flex-shrink: 0;
+}
+.rating-item.icon-item .platform { margin-bottom: 4px; }
+.rating-item.icon-item .score { font-size: 16px; color: var(--ink); font-family: 'Cormorant Garamond', serif; }
+.rating-item.icon-item .stars { color: var(--copper); letter-spacing: 2px; }
 
 /* ---------- Sections ---------- */
 
@@ -495,6 +601,9 @@ section.tight { padding: 56px 0; }
   .quicklinks a:nth-child(2) { border-right: none; }
   .ratings-strip { flex-direction: column; }
   .rating-item { border-right: none; border-bottom: 1px solid var(--line); }
+  .ratings-strip.icons { grid-template-columns: repeat(2, 1fr); }
+  .rating-item.icon-item:nth-child(3n) { border-right: 1px solid var(--line); }
+  .rating-item.icon-item:nth-child(2n) { border-right: none; }
   .post-images { grid-template-columns: 1fr; }
   section { padding: 56px 0; }
 }
