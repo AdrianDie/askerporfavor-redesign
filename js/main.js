@@ -8,12 +8,14 @@ document.addEventListener('DOMContentLoaded', function () {
     toggle.addEventListener('click', function () {
       var open = toggle.classList.toggle('is-open');
       mobileNav.classList.toggle('is-open', open);
+      document.body.classList.toggle('nav-open', open);
       document.body.style.overflow = open ? 'hidden' : '';
     });
     mobileNav.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', function () {
         toggle.classList.remove('is-open');
         mobileNav.classList.remove('is-open');
+        document.body.classList.remove('nav-open');
         document.body.style.overflow = '';
       });
     });

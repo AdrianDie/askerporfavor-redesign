@@ -186,6 +186,12 @@ p:last-child { margin-bottom: 0; }
 .nav-toggle.is-open span::before { top: 0; transform: rotate(45deg); }
 .nav-toggle.is-open span::after { top: 0; transform: rotate(-45deg); }
 
+/* keep the toggle (now an X) clickable and visible above the full-screen mobile nav */
+body.nav-open .site-header { z-index: 70; background: transparent; border-color: transparent; }
+body.nav-open .brand { visibility: hidden; }
+body.nav-open .nav-toggle.is-open span::before,
+body.nav-open .nav-toggle.is-open span::after { background: var(--cream); }
+
 .mobile-nav {
   position: fixed;
   inset: 0;
